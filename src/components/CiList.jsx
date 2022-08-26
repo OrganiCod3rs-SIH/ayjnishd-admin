@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Space, Table, Tag, Button } from "antd";
+import { Button } from "antd";
 import "../App.css";
 
 const CiList = () => {
