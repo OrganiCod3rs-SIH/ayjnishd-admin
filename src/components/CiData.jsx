@@ -11,6 +11,12 @@ const CiData = () => {
     });
   }, []);
 
+  function changeStatus(id)
+  {
+    axios.post('https://ayjnishd-backend-sih.herokuapp.com/changeStatus', {data: {id: id, status: "accepted"}})
+    alert("Status changed to accepted");
+  }
+
   return (
     <div>
       <h2>CI Application</h2>
@@ -32,7 +38,7 @@ const CiData = () => {
               <td className="">{item.degree}</td>
               <td className="">{item.type}</td>
               <td className="">{item.id}</td>
-              <Button type="primary">Proceed</Button>
+              <Button onClick={()=>{changeStatus(item.id)}} type="primary">Proceed</Button>
               <Button type="primary" danger>
                 Decline
               </Button>
