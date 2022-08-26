@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Space, Table, Tag, Button } from "antd";
-import "../../App.css";
+import "../App.css";
 
-const CiData = () => {
+const CiList = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get("https://ayjnishd-backend-sih.herokuapp.com/ci").then((res) => {
@@ -33,10 +33,8 @@ const CiData = () => {
               <td className="">{item.degree}</td>
               <td className="">{item.type}</td>
               <td className="">{item.id}</td>
-              <Button type="primary">Proceed</Button>
-              <Button type="primary" danger>
-                Decline
-              </Button>
+              <Button type="primary">Accepted</Button>
+              <input placeholder="set date"></input>
             </tr>
           ))}
         </table>
@@ -45,4 +43,4 @@ const CiData = () => {
   );
 };
 
-export default CiData;
+export default CiList;

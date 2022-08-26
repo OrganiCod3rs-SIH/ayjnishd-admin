@@ -8,7 +8,8 @@ import {
 import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
 import "./App.css";
-import CiData from "./components/CiData.jsx/CiData";
+import CiData from "./components/CiData";
+import CiList from "./components/CiList";
 import Feedback from "./components/Feedback";
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -24,6 +25,7 @@ function getItem(label, key, icon, children) {
 const items = [
   getItem("Ci Data", "ci-data", <PieChartOutlined />),
   getItem("Feedback", "feedback", <DesktopOutlined />),
+  getItem("Processed CI", "ci", <DesktopOutlined />),
 ];
 
 console.log(items);
@@ -66,7 +68,13 @@ const App = () => {
               minHeight: 360,
             }}
           >
-            {currPage === "ci-data" ? <CiData /> : <Feedback />}
+            {currPage === "ci-data" ? (
+              <CiData />
+            ) : currPage === "feedback" ? (
+              <Feedback />
+            ) : (
+              <CiList />
+            )}
           </div>
         </Content>
         <Footer
