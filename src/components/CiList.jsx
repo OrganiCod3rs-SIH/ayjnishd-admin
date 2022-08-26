@@ -7,8 +7,8 @@ const CiList = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get("https://ayjnishd-backend-sih.herokuapp.com/ci").then((res) => {
-      console.log(res.data);
-      setData(res.data);
+      // console.log(res.data.filter((d) => d.status === "accepted"));
+      setData(res.data.filter((d) => d.status === "accepted"));
     });
   }, []);
 

@@ -9,7 +9,7 @@ const Feedback = () => {
     axios
       .get("https://ayjnishd-backend-sih.herokuapp.com/feedback")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setData(res.data);
       });
   }, []);

@@ -7,8 +7,7 @@ const CiData = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get("https://ayjnishd-backend-sih.herokuapp.com/ci").then((res) => {
-      console.log(res.data);
-      setData(res.data);
+      setData(res.data.filter((d) => d.status === "pending"));
     });
   }, []);
 
