@@ -4,11 +4,12 @@ import {
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
-} from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu } from 'antd';
-import React, { useState } from 'react';
-import "./App.css"
-import CiData from './components/CiData.jsx/CiData';
+} from "@ant-design/icons";
+import { Breadcrumb, Layout, Menu } from "antd";
+import React, { useState } from "react";
+import "./App.css";
+import CiData from "./components/CiData.jsx/CiData";
+import Feedback from "./components/Feedback";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -21,46 +22,43 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem('Ci Data', 'ci-data', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />)
+  getItem("Ci Data", "ci-data", <PieChartOutlined />),
+  getItem("Feedback", "feedback", <DesktopOutlined />),
 ];
 
-console.log(items)
+console.log(items);
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [currPage, setCurrPage] = useState("ci-data");
   return (
     <Layout
       style={{
-        minHeight: '100vh',
+        minHeight: "100vh",
       }}
     >
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        {/* <div className="logo" /> */}
-        <Menu theme="dark" defaultSelectedKeys={['ci-data']} mode="inline" items={items} onSelect={({key})=>{
-          console.log(key);
-        }}/>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["ci-data"]}
+          mode="inline"
+          items={items}
+          onSelect={({ key }) => {
+            console.log(key);
+            setCurrPage(key);
+          }}
+        />
       </Sider>
       <Layout className="site-layout">
-        {/* <Header
-          className="site-layout-background"
-          style={{
-            padding: 0,
-          }}
-        /> */}
         <Content
           style={{
-            margin: '0 16px',
+            margin: "0 16px",
           }}
         >
-          {/* <Breadcrumb
-            style={{
-              margin: '16px 0',
-            }}
-          >
-            <Breadcrumb.Item>Admin</Breadcrumb.Item>
-            <Breadcrumb.Item>CiData</Breadcrumb.Item>
-          </Breadcrumb> */}
           <div
             className="site-layout-background"
             style={{
@@ -68,19 +66,19 @@ const App = () => {
               minHeight: 360,
             }}
           >
-            <CiData/>
+            {currPage === "ci-data" ? <CiData /> : <Feedback />}
           </div>
         </Content>
         <Footer
           style={{
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
-          Ant Design ©2018 Created by Ant UED
+          A admin portal for AYIJNISH
         </Footer>
       </Layout>
     </Layout>
   );
 };
 
-export default App; 
+export default App;
